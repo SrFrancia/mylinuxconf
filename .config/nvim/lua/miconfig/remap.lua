@@ -35,5 +35,14 @@ vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower win
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
 -- Oil remap
-vim.keymap.set("n", "<leader>-", "<CMD>Oil<CR>", { desc = "Open Oil file explorer" })
+vim.keymap.set("n", "<leader>-", "<CMD>bdelete<CR><CMD>Oil<CR>", { desc = "Open Oil file explorer" })
 
+-- Splits
+vim.keymap.set("n", "<leader>sv", ":vsplit<CR>", { desc = "Split window vertically" })
+vim.keymap.set("n", "<leader>sh", ":split<CR>", { desc = "Split window horizontally" })
+
+-- Alt moving
+vim.keymap.set("n", "<A-j>", ":m .+1<CR>==", { desc = "Move line down" })
+vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", { desc = "Move line up" })
+vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
+vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })

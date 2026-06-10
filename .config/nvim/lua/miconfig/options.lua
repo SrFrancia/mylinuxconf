@@ -79,6 +79,9 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
+-- Minimal number of characters to keep left and right of the cursor.
+vim.opt.sidescrolloff = 10
+
 -- Set backup directories
 local prefix = os.getenv("XDG_STATE_HOME")
 -- Fallback to default if XDG_STATE_HOME is not set
@@ -88,3 +91,11 @@ end
 vim.opt.undodir = { prefix .. "nvim/.undo/" }
 vim.opt.backupdir = { prefix .. "nvim/.backup/" }
 vim.opt.directory = { prefix .. "nvim/.swp/" }
+
+-- Folding
+vim.opt.foldmethod = "expr" -- use expression for folding
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()" -- use treesitter for folding
+vim.opt.foldlevel = 99 -- start with all folds open
+
+-- No usar world wrap por defecto
+vim.opt.wrap = false

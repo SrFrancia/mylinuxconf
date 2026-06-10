@@ -1,23 +1,43 @@
 return { -- You can easily change to a different colorscheme.
-	-- Change the name of the colorscheme plugin below, and then
-	-- change the command in the config to whatever the name of that colorscheme is.
-	--
-	-- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-	"folke/tokyonight.nvim",
-	priority = 1000, -- Make sure to load this before all the other start plugins.
-	init = function()
-		-- Load the colorscheme here.
-		-- Like many other themes, this one has different styles, and you could load
-		-- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-		vim.cmd.colorscheme("tokyonight-night")
+  -- Change the name of the colorscheme plugin below, and then
+  -- change the command in the config to whatever the name of that colorscheme is.
+  --
+  -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
+  "folke/tokyonight.nvim",
+  priority = 1000, -- Make sure to load this before all the other start plugins.
+  init = function()
+    -- Load the colorscheme here.
+    -- Like many other themes, this one has different styles, and you could load
+    -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
+    vim.cmd.colorscheme("tokyonight-night")
 
-		-- You can configure highlights by doing something like:
-		vim.cmd.hi("Comment gui=none")
-	end,
-	on_highlights = function(highlights, colors)
-		-- Make unused code more readable by using a lighter gray
-		highlights.DiagnosticUnnecessary = { fg = colors.comment }
-		-- Or use any other color from the palette
-		-- highlights.DiagnosticUnnecessary = { fg = colors.dark5 }
-	end,
+    -- You can configure highlights by doing something like:
+    vim.cmd.hi("Comment gui=none")
+
+    -- Set UI elements to transparent
+    local groups = {
+      "Normal",
+      "NormalNC",
+      "EndOfBuffer",
+      "NormalFloat",
+      "FloatBorder",
+      "SignColumn",
+      "StatusLine",
+      "StatusLineNC",
+      "TabLine",
+      "TabLineFill",
+      "TabLineSel",
+      "ColorColumn",
+    }
+    for _, g in ipairs(groups) do
+      vim.api.nvim_set_hl(0, g, { bg = "none" })
+    end
+    vim.api.nvim_set_hl(0, "TabLineFill", { bg = "none", fg = "#767676" })
+  end,
+  on_highlights = function(highlights, colors)
+    -- Make unused code more readable by using a lighter gray
+    highlights.DiagnosticUnnecessary = { fg = colors.comment }
+    -- Or use any other color from the palette
+    -- highlights.DiagnosticUnnecessary = { fg = colors.dark5 }
+  end,
 }
